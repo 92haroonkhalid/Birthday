@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
       messageText: document.getElementById('message'),
       messagesContainer: document.getElementById('messages-container'),
       emptyMessageContainer: document.getElementById('empty-message-container'),
-      clearMessagesButton: document.getElementById('clear-messages'),
       
       // Photo gallery
       photoGallery: document.getElementById('photo-gallery')
@@ -303,24 +302,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const messageForm = document.getElementById('message-form');
       const messagesContainer = document.getElementById('messages-container');
       const emptyMessageContainer = document.getElementById('empty-message-container');
-      const clearMessagesButton = document.getElementById('clear-messages');
       
       // Static messages array - these will be visible to all visitors
       let staticMessages = [
         {
-          sender: "Asia",
-          content: "Happy Birthday to me! 🎂✨",
-          date: "2023-04-04T00:00:00.000Z"
-        },
-        {
-          sender: "Your Love",
-          content: "You make my world complete. Happy Birthday, my beautiful Asia! ❤️",
-          date: "2023-04-04T00:00:00.000Z"
-        },
-        {
-          sender: "Family",
-          content: "Wishing you joy, love, and all the happiness you deserve on your special day! 🎉",
-          date: "2023-04-04T00:00:00.000Z"
+          sender: "Haroon Khalid",
+          content: "Happy Birthday Mairi Sohni jan! 🎂✨",
+          date: "2024-04-04T00:12:00.000Z"
         }
       ];
       
@@ -349,34 +337,6 @@ document.addEventListener('DOMContentLoaded', () => {
           `)
           .join('');
       };
-      
-      // Add event listener for the clear messages button
-      if (clearMessagesButton) {
-        clearMessagesButton.addEventListener('click', () => {
-          if (confirm('Are you sure you want to clear all messages? This cannot be undone.')) {
-            // Reset to default messages
-            staticMessages = [
-              {
-                sender: "Asia",
-                content: "Happy Birthday to me! 🎂✨",
-                date: "2023-04-04T00:00:00.000Z"
-              },
-              {
-                sender: "Your Love",
-                content: "You make my world complete. Happy Birthday, my beautiful Asia! ❤️",
-                date: "2023-04-04T00:00:00.000Z"
-              },
-              {
-                sender: "Family",
-                content: "Wishing you joy, love, and all the happiness you deserve on your special day! 🎉",
-                date: "2023-04-04T00:00:00.000Z"
-              }
-            ];
-            displayMessages();
-            alert('All messages have been cleared and reset to default.');
-          }
-        });
-      }
       
       // Modify the form submission to add messages to the static array
       messageForm.addEventListener('submit', (e) => {
