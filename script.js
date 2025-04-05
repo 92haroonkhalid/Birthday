@@ -304,66 +304,93 @@ document.addEventListener('DOMContentLoaded', () => {
       const emptyMessageContainer = document.getElementById('empty-message-container');
       
       // Static messages array - these will be visible to all visitors
-      let staticMessages = [
+      // This is the only place you need to edit to add permanent messages
+      const staticMessages = [
         {
           sender: "Haroon Khalid",
           content: "Happy Birthday Mairi Sohni jan! 🎂✨",
           date: "2024-04-04T00:12:00.000Z"
+        },
+        {
+          sender: "Your Love",
+          content: "You make my world complete. Happy Birthday, my beautiful Asia! ❤️",
+          date: "2024-04-04T00:00:00.000Z"
+        },
+        {
+          sender: "Family",
+          content: "Wishing you joy, love, and all the happiness you deserve on your special day! 🎉",
+          date: "2024-04-04T00:00:00.000Z"
         }
       ];
       
       const displayMessages = () => {
-        // Use static messages instead of localStorage
-        const messages = staticMessages;
-        
-        if (messages.length === 0) {
-          messagesContainer.style.display = 'none';
-          emptyMessageContainer.style.display = 'block';
-          return;
+        try {
+          // Use static messages instead of localStorage
+          const messages = staticMessages;
+          
+          if (!messages || messages.length === 0) {
+            if (messagesContainer) messagesContainer.style.display = 'none';
+            if (emptyMessageContainer) emptyMessageContainer.style.display = 'block';
+            return;
+          }
+          
+          if (messagesContainer) messagesContainer.style.display = 'block';
+          if (emptyMessageContainer) emptyMessageContainer.style.display = 'none';
+          
+          if (messagesContainer) {
+            messagesContainer.innerHTML = messages
+              .map(msg => `
+                <div class="message-item">
+                  <div class="message-header">
+                    <span class="message-sender">${msg.sender}</span>
+                    <span class="message-date">${new Date(msg.date).toLocaleDateString()}</span>
+                  </div>
+                  <div class="message-text">${msg.content}</div>
+                </div>
+              `)
+              .join('');
+          }
+        } catch (error) {
+          console.error("Error displaying messages:", error);
+          if (messagesContainer) messagesContainer.style.display = 'none';
+          if (emptyMessageContainer) emptyMessageContainer.style.display = 'block';
         }
-        
-        messagesContainer.style.display = 'block';
-        emptyMessageContainer.style.display = 'none';
-        
-        messagesContainer.innerHTML = messages
-          .map(msg => `
-            <div class="message-item">
-              <div class="message-header">
-                <span class="message-sender">${msg.sender}</span>
-                <span class="message-date">${new Date(msg.date).toLocaleDateString()}</span>
-              </div>
-              <div class="message-text">${msg.content}</div>
-            </div>
-          `)
-          .join('');
       };
       
       // Modify the form submission to add messages to the static array
-      messageForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const senderName = document.getElementById('sender-name').value.trim();
-        const messageContent = document.getElementById('message').value.trim();
-        
-        if (!senderName || !messageContent) return;
-        
-        // Add the new message to the static array
-        staticMessages.push({
-          sender: senderName,
-          content: messageContent,
-          date: new Date().toISOString()
+      if (messageForm) {
+        messageForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          try {
+            const senderName = document.getElementById('sender-name').value.trim();
+            const messageContent = document.getElementById('message').value.trim();
+            
+            if (!senderName || !messageContent) return;
+            
+            // Add the new message to the static array
+            staticMessages.push({
+              sender: senderName,
+              content: messageContent,
+              date: new Date().toISOString()
+            });
+            
+            // Update the display
+            displayMessages();
+            
+            // Reset the form
+            messageForm.reset();
+            
+            // Show a thank you message
+            alert("Thank you for your birthday wish! It will be visible to all visitors during this session.");
+          } catch (error) {
+            console.error("Error submitting message:", error);
+            alert("There was an error submitting your message. Please try again.");
+          }
         });
-        
-        // Update the display
-        displayMessages();
-        
-        // Reset the form
-        messageForm.reset();
-        
-        // Show a thank you message
-        alert("Thank you for your birthday wish! It will be visible to all visitors.");
-      });
+      }
       
+      // Initialize the display
       displayMessages();
     };
     
