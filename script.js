@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let audioElement;
     const initAudio = () => {
       try {
-        audioElement = new Audio('Apna Bana Le.m4a');
+        audioElement = new Audio('https://open.spotify.com/track/7DspiNppJdnNx1av4cJfUj?si=g0ID7f7fQniMhkOfk_HXsA');
         audioElement.preload = 'metadata';
         audioElement.loop = true;
         
