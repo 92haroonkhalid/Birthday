@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let audioElement;
     const initAudio = () => {
       try {
-        audioElement = new Audio('https://open.spotify.com/track/7DspiNppJdnNx1av4cJfUj?si=g0ID7f7fQniMhkOfk_HXsA');
+        audioElement = new Audio('https://music.youtube.com/watch?v=lgTHGZF3BQw&si=01-M8nCwSq-QwVc-');
         audioElement.preload = 'metadata';
         audioElement.loop = true;
         
