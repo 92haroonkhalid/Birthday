@@ -313,11 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
           sender: "Your Love",
-          content: "You make my world complete. Happy Birthday, my beautiful Asia! ❤️",
+          content: "You make my world complete. Happy Birthday, my Guzellim! ❤️",
           date: "2024-04-04T00:00:00.000Z"
         },
         {
-          sender: "Family",
+          sender: "It's Me",
           content: "Wishing you joy, love, and all the happiness you deserve on your special day! 🎉",
           date: "2024-04-04T00:00:00.000Z"
         }
