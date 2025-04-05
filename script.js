@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
           date: "2024-04-04T00:00:00.000Z"
         },
         {
-          sender: "It's Me",
+          sender: "Family",
           content: "Wishing you joy, love, and all the happiness you deserve on your special day! 🎉",
           date: "2024-04-04T00:00:00.000Z"
         }
